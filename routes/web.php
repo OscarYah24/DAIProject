@@ -10,5 +10,5 @@ Route::get('/', [BlogController::class, 'index'])->name('blog.index');
 // Rutas de autenticación
 Auth::routes();
 
-// Ruta del dashboard 
+// Ruta del dashboard
 Route::get('/home', [HomeController::class, 'index'])->name('home');

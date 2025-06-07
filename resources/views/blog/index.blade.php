@@ -380,7 +380,7 @@
             <div class="row">
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3">About Blog Design</h5>
-                    <p class="text-muted">
+                    <p class="text-white-50">
                         A modern blog template built with Bootstrap 5, featuring responsive design 
                         and beautiful typography for the best reading experience.
                     </p>
@@ -415,7 +415,7 @@
             </div>
             <hr class="my-4 border-secondary">
             <div class="text-center">
-                <p class="mb-0 text-muted">© 2025 Blog Design. All rights reserved.</p>
+                <p class="mb-0 text-white-50">© 2025 Blog Design. All rights reserved.</p>
             </div>
         </div>
     </footer>

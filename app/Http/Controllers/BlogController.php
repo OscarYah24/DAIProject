@@ -56,7 +56,7 @@ class BlogController extends Controller
                 'tag' => 'Green Design',
                 'author' => 'Emma Wilson',
                 'date' => 'December 28, 2024',
-                'image' => 'https://images.unsplash.com/photo-1536859975388-b5e6623f9223?w=800&h=600&fit=crop',
+                'image' => 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
                 'reading_time' => '6 min read'
             ],
             [
