@@ -7,16 +7,12 @@
 
     <title>Blog Design - Modern Blog Template</title>
 
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome para iconos -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Estilos personalizados -->
     <style>
         :root {
             --primary-color: #2563eb;
@@ -40,7 +36,6 @@
             line-height: 1.6;
         }
 
-        /* Header Styles */
         .navbar {
             background-color: white;
             border-bottom: 1px solid var(--border-color);
@@ -89,7 +84,6 @@
             color: var(--secondary-color);
         }
 
-        /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
@@ -115,7 +109,6 @@
             z-index: 1;
         }
 
-        /* Blog Cards */
         .blog-card {
             background: white;
             border-radius: 1rem;
@@ -205,7 +198,6 @@
             gap: 0.25rem;
         }
 
-        /* Tags */
         .tag {
             display: inline-block;
             padding: 0.25rem 0.75rem;
@@ -217,7 +209,6 @@
             margin-right: 0.5rem;
         }
 
-        /* Footer */
         footer {
             background-color: var(--dark-color);
             color: white;
@@ -235,7 +226,6 @@
             color: white;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero-section {
                 padding: 3rem 0;
@@ -250,7 +240,6 @@
             }
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -268,7 +257,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
@@ -303,7 +291,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
             <div class="hero-content text-center">
@@ -320,9 +307,7 @@
         </div>
     </section>
 
-    <!-- Main Content -->
     <div class="container">
-        <!-- Categories Section -->
         <div class="text-center mb-5">
             <h2 class="h4 mb-4">Popular Categories</h2>
             <div class="d-flex flex-wrap justify-content-center gap-2">
@@ -335,7 +320,6 @@
             </div>
         </div>
 
-        <!-- Blog Posts Grid -->
         <div class="row g-4">
             @foreach($articles as $article)
             <div class="col-lg-4 col-md-6">
@@ -366,7 +350,6 @@
             @endforeach
         </div>
 
-        <!-- Load More Button -->
         <div class="text-center mt-5">
             <button class="btn btn-primary btn-lg px-5">
                 <i class="fas fa-plus me-2"></i>Load More Articles
@@ -374,7 +357,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -420,12 +402,9 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- JavaScript personalizado -->
+
     <script>
-        // Animación suave al hacer scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -438,7 +417,6 @@
             });
         });
 
-        // Función de búsqueda simple
         const searchInput = document.querySelector('.search-box input');
         searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
@@ -456,7 +434,6 @@
             });
         });
 
-        // Efecto de aparición al hacer scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -471,7 +448,6 @@
             });
         }, observerOptions);
 
-        // Aplicar el observer a las tarjetas del blog
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.col-lg-4');
             cards.forEach((card, index) => {
