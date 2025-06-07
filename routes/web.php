@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BlogController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Ruta principal del blog
+Route::get('/', [BlogController::class, 'index'])->name('blog.index');
 
+// Rutas de autenticación
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/blog', [HomeController::class, 'viewBlog']);
+// Ruta del dashboard 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
