@@ -59,7 +59,18 @@
                 <div class="col-md-8">
                     <div class="card shadow-sm">
                         <div class="card-body p-4">
-                            <form action="{{ route('articles.update', $article) }}" method="POST">
+                            <!-- Mostrar errores de validación -->
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <form id="article-form" action="{{ route('articles.update', $article) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 
@@ -177,20 +188,24 @@
 
                                 <!-- Botones de acción -->
                                 <div class="d-flex justify-content-between">
-                                    <button type="button" 
-                                            class="btn btn-danger" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#deleteModal">
-                                        <i class="fas fa-trash me-1"></i>
-                                        Eliminar
-                                    </button>
+                                    <!-- Formulario de eliminación simplificado -->
+                                    <form action="{{ route('articles.destroy', $article) }}" method="POST" 
+                                          onsubmit="return confirm('¿Estás seguro de que deseas eliminar el artículo: {{ $article->title }}?')" 
+                                          style="display: inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash me-1"></i>
+                                            Eliminar
+                                        </button>
+                                    </form>
                                     
                                     <div class="d-flex gap-2">
                                         <a href="{{ route('articles.index') }}" class="btn btn-secondary">
                                             <i class="fas fa-times me-1"></i>
                                             Cancelar
                                         </a>
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" form="article-form">
                                             <i class="fas fa-save me-1"></i>
                                             Actualizar
                                         </button>
@@ -202,39 +217,6 @@
                 </div>
             </div>
         </main>
-    </div>
-</div>
-
-<!-- Modal de confirmación para eliminar -->
-<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">
-                    <i class="fas fa-exclamation-triangle text-warning me-2"></i>
-                    Confirmar eliminación
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar el artículo <strong>"{{ $article->title }}"</strong>?</p>
-                <p class="text-muted small">Esta acción no se puede deshacer.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    <i class="fas fa-times me-1"></i>
-                    Cancelar
-                </button>
-                <form action="{{ route('articles.destroy', $article) }}" method="POST" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">
-                        <i class="fas fa-trash me-1"></i>
-                        Eliminar definitivamente
-                    </button>
-                </form>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -380,26 +362,6 @@ main {
 textarea.form-control {
     resize: vertical;
     min-height: 120px;
-}
-
-.modal-content {
-    border-radius: 0.5rem;
-    border: none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-.modal-header {
-    border-bottom: 1px solid #e3e6f0;
-    padding: 1.25rem;
-}
-
-.modal-body {
-    padding: 1.25rem;
-}
-
-.modal-footer {
-    border-top: 1px solid #e3e6f0;
-    padding: 1.25rem;
 }
 </style>
 @endsection

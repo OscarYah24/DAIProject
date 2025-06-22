@@ -15,6 +15,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     
@@ -94,7 +97,42 @@
         </main>
     </div>
     
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!-- JavaScript personalizado para artículos -->
     <script src="{{ asset('js/articles.js') }}"></script>
+    
+    <!-- Script para manejar eliminación -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar token CSRF para requests AJAX
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            
+            // Manejar eliminación con confirmación
+            const deleteButtons = document.querySelectorAll('.btn-delete');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    if (confirm('¿Estás seguro de que deseas eliminar este artículo?')) {
+                        const form = this.closest('form');
+                        form.submit();
+                    }
+                });
+            });
+            
+            // Prevenir doble clic en botones de envío
+            const submitButtons = document.querySelectorAll('button[type="submit"]');
+            submitButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    setTimeout(() => {
+                        this.disabled = true;
+                        this.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Procesando...';
+                    }, 100);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
